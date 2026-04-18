@@ -1,144 +1,65 @@
-🔹 1. Importimi
-import tkinter as tk
+# 📞 Numra Emergjence - Shqipëri
 
-👉 Këtu po marrim një mjet që quhet Tkinter
+Ky është një aplikacion i thjeshtë i ndërtuar me Python dhe Tkinter që shfaq numrat më të rëndësishëm të emergjencës dhe shërbimeve në Shqipëri.
 
-💡 Çfarë bën?
+---
 
-Na lejon të krijojmë një dritare (app) në kompjuter 🪟
-Si të bësh një program që duket si lojë ose aplikacion
-🔹 2. Krijimi i klasës
-class App:
+## 🧠 Çfarë bën ky program?
 
-👉 Kjo është si truri i programit 🧠
+Ky program krijon një dritare (GUI) ku përdoruesi mund të:
 
-💡 Pse përdoret?
+- Zgjedhë një qytet ose kategori 📍
+- Shikojë numrat e emergjencës dhe shërbimeve 📞
+- Lëvizë në listë me scroll 📜
 
-Brenda saj vendoset gjithë logjika e aplikacionit
-🔹 3. Funksioni fillestar
-def __init__(self):
+---
 
-👉 Ky funksion ndizet automatikisht kur hapet programi
+## 🛠️ Teknologjitë e përdorura
 
-💡 Si “butoni i ndezjes” 🔘
+- Python 🐍  
+- Tkinter (për krijimin e dritares grafike) 🪟  
 
-🔹 4. Krijimi i dritares
-self.root = tk.Tk()
+---
 
-👉 Krijon dritaren kryesore 🪟
+## 🧩 Si funksionon programi?
 
-self.root.title("📞 Numra Shqipëria")
+### 🧠 Klasa kryesore
+Programi përdor një klasë të quajtur `App`, e cila përmban gjithë logjikën e aplikacionit.
 
-👉 Vendos emrin sipër dritares (titullin)
+---
 
-self.root.geometry("620x520")
+### 🪟 Dritarja kryesore
+Kur programi nis:
+- Krijohet një dritare me Tkinter
+- Vendoset titulli “📞 Numra Shqipëria”
+- Vendoset madhësia dhe ngjyra e sfondit
 
-👉 Vendos madhësinë e dritares 📏
+---
 
-self.root.configure(bg="#0f172a")
+### 📍 Zgjedhja e kategorisë
+Përdoruesi mund të zgjedhë një kategori si:
+- Emergjenca kombëtare 🚨
+- Tiranë 🏙️
+- Durrës 🌊
+- etj.
 
-👉 Vendos ngjyrën e sfondit 🎨
+---
 
-🔹 5. Zgjedhja e parë
-self.current = list(data.keys())[0]
+### 📞 Lista e numrave
+Pasi zgjidhet kategoria:
+- Shfaqen numrat dhe emrat e shërbimeve
+- Lista përditësohet automatikisht
 
-👉 Merr kategorinë e parë nga lista
+---
 
-💡 Si me hap automatikisht “Emergjencat”
+### 🔄 Ndryshimi i të dhënave
+Kur ndryshohet kategoria:
+- Lista pastrohet 🧹
+- Shfaqen të dhënat e reja 📋
 
-🔹 6. Ndërtimi i UI
-self.build()
+---
 
-👉 Krijon pamjen e programit (butonat, lista, etj.)
+## 🚀 Si ta nisësh programin
 
-🔹 7. Shfaqja e të dhënave
-self.update()
-
-👉 Tregon numrat në ekran 📞
-
-🔹 8. Ndërtimi i ekranit
-def build(self):
-
-👉 Këtu ndërtohet pamja e aplikacionit
-
-🟦 Titulli
-tk.Label(self.root, text="📞 NUMRA EMERGJENCE - SHQIPËRI",
-
-👉 Krijon tekstin e madh sipër ekranit
-
-💡 Si titull i një libri 📖
-
-🔽 Menu (zgjedhja e kategorisë)
-self.var = tk.StringVar(value=self.current)
-
-👉 Ruan çfarë kategorie është zgjedhur
-
-tk.OptionMenu(self.root, self.var, *data, command=self.change)
-
-👉 Krijon një menu ku zgjedh qytetin/kategorinë
-
-💡 Si listë zgjedhjeje 🎯
-
-📦 Kuti për listën
-box = tk.Frame(self.root)
-
-👉 Krijon një kuti ku futet lista
-
-📜 Scroll (rrëshqitje)
-scroll = tk.Scrollbar(box)
-
-👉 Krijon shiritin për të lëvizur poshtë/lart
-
-📋 Lista e numrave
-self.listbox = tk.Listbox(...)
-
-👉 Këtu shfaqen numrat dhe emrat 📞
-
-scroll.config(command=self.listbox.yview)
-
-👉 Lidh scroll me listën
-
-🔹 9. Kur ndryshon zgjedhja
-def change(self, val):
-
-👉 Kur zgjedh një kategori tjetër
-
-self.current = val
-
-👉 Ruan zgjedhjen e re
-
-self.update()
-
-👉 Rifreskon listën 🔄
-
-🔹 10. Shfaqja e numrave
-def update(self):
-
-👉 Kjo e mbush listën me të dhëna
-
-self.listbox.delete(0, tk.END)
-
-👉 Fshin të dhënat e vjetra 🧹
-
-for nr, name in data[self.current]:
-
-👉 Merr çdo numër nga kategoria e zgjedhur
-
-self.listbox.insert(tk.END, f"📞 {nr} • {name}")
-
-👉 I shton në ekran 📞
-
-🔹 11. Nisja e programit
-def run(self):
-    self.root.mainloop()
-
-👉 E mban programin hapur (që mos mbyllet)
-
-🔹 12. Startimi
-if __name__ == "__main__":
-
-👉 Kontrollon që po e hapim direkt programin
-
-App().run()
-
-👉 E nis aplikacionin 🚀
+```bash
+python app.py
