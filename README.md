@@ -1,106 +1,144 @@
-📞 Numra Emergjence - Shqipëri (Tkinter App)
-🧠 Përshkrimi
- 
-Ky projekt është një aplikacion desktop i ndërtuar me Python dhe Tkinter, që funksionon si një libër telefonik për numra emergjence dhe shërbime në Shqipëri.
- 
-Aplikacioni lejon përdoruesin të zgjedhë një qark dhe të shohë menjëherë numrat përkatës të emergjencës dhe institucioneve kryesore.
- 
-🎯 Qëllimi
- 
-Ky projekt është krijuar për:
- 
-Praktikë me Tkinter (GUI development)
-Kuptimin e event-driven programming
-Organizimin e kodit me OOP (Class-based structure)
-Ndërtimin e një aplikacioni real dhe të dobishëm
-⚙️ Funksionalitetet
-🪟 GUI
-Ndërfaqe grafike me Tkinter
-Dizajn modern (dark mode)
-Layout i thjeshtë dhe i pastër
-🔀 Zgjedhja e qytetit
-Dropdown (OptionMenu) me 12 qarqet:
-Tiranë
-Durrës
-Shkodër
-Elbasan
-Fier
-Vlorë
-Korçë
-Berat
-Gjirokastër
-Kukës
-Lezhë
-Dibër
-Përditësim automatik i listës kur ndryshon qyteti
-📜 Lista e numrave
-Listbox për shfaqjen e të dhënave
-Scrollbar për navigim
- 
-Format:
- 
-[Numri] - [Shërbimi]
-🚨 Numrat Kombëtarë
-112 – Emergjenca Unike
-129 – Policia
-127 – Ambulanca
-128 – Zjarrfikësit
-126 – Policia Rrugore
-🔧 Shërbime Kombëtare
-0800 14 14 – OSHEE
-0800 44 55 – Ujësjellës
-116 – Info / Telekom
-🏙️ Të Dhënat për Qarqet
- 
-Për çdo qark përfshihen:
- 
-Policia
-Ambulanca
-Zjarrfikësit
-Bashkia
-Spitali kryesor
- 
-📌 Shënim: Numrat lokalë mund të jenë placeholder ose të personalizohen.
- 
-🎨 Dizajni
-Background: #1e1e2f
-Tekst: i bardhë (#ffffff)
-Accent: blu (#4da6ff)
-Highlight për elementët e selektuar
-🧠 Struktura e Kodit
- 
-Aplikacioni përdor OOP:
- 
-class EmergencyApp
-create_ui() → ndërton GUI
-update_numbers(city) → përditëson listën
-Event handling për dropdown
-mainloop() për nisjen e aplikacionit
-▶️ Si ta përdorësh
-Sigurohu që ke Python të instaluar (3.x)
-Shkarko ose klono projektin
-Ekzekuto file-in kryesor:
-python main.py
-🚀 Ide për përmirësim
-🔍 Search për numra
-📱 Simulim “Call”
-💾 Ruajtje e të dhënave në file (JSON)
-🎨 Tema të ndryshme (light/dark toggle)
-🌐 Integrim me API reale
-📁 Strukturë e Sugjeruar
-project/
-│── main.py
-│── data.py
-│── ui.py
-│── README.md
-🧩 Teknologjitë
-Python
-Tkinter
-📌 Statusi
- 
-✅ Funksional (basic version)
-🔧 Open për përmirësime
- 
-👨‍💻 Autor
- 
-Projekt për praktikë dhe mësim në GUI development me Python.
+🔹 1. Importimi
+import tkinter as tk
+
+👉 Këtu po marrim një mjet që quhet Tkinter
+
+💡 Çfarë bën?
+
+Na lejon të krijojmë një dritare (app) në kompjuter 🪟
+Si të bësh një program që duket si lojë ose aplikacion
+🔹 2. Krijimi i klasës
+class App:
+
+👉 Kjo është si truri i programit 🧠
+
+💡 Pse përdoret?
+
+Brenda saj vendoset gjithë logjika e aplikacionit
+🔹 3. Funksioni fillestar
+def __init__(self):
+
+👉 Ky funksion ndizet automatikisht kur hapet programi
+
+💡 Si “butoni i ndezjes” 🔘
+
+🔹 4. Krijimi i dritares
+self.root = tk.Tk()
+
+👉 Krijon dritaren kryesore 🪟
+
+self.root.title("📞 Numra Shqipëria")
+
+👉 Vendos emrin sipër dritares (titullin)
+
+self.root.geometry("620x520")
+
+👉 Vendos madhësinë e dritares 📏
+
+self.root.configure(bg="#0f172a")
+
+👉 Vendos ngjyrën e sfondit 🎨
+
+🔹 5. Zgjedhja e parë
+self.current = list(data.keys())[0]
+
+👉 Merr kategorinë e parë nga lista
+
+💡 Si me hap automatikisht “Emergjencat”
+
+🔹 6. Ndërtimi i UI
+self.build()
+
+👉 Krijon pamjen e programit (butonat, lista, etj.)
+
+🔹 7. Shfaqja e të dhënave
+self.update()
+
+👉 Tregon numrat në ekran 📞
+
+🔹 8. Ndërtimi i ekranit
+def build(self):
+
+👉 Këtu ndërtohet pamja e aplikacionit
+
+🟦 Titulli
+tk.Label(self.root, text="📞 NUMRA EMERGJENCE - SHQIPËRI",
+
+👉 Krijon tekstin e madh sipër ekranit
+
+💡 Si titull i një libri 📖
+
+🔽 Menu (zgjedhja e kategorisë)
+self.var = tk.StringVar(value=self.current)
+
+👉 Ruan çfarë kategorie është zgjedhur
+
+tk.OptionMenu(self.root, self.var, *data, command=self.change)
+
+👉 Krijon një menu ku zgjedh qytetin/kategorinë
+
+💡 Si listë zgjedhjeje 🎯
+
+📦 Kuti për listën
+box = tk.Frame(self.root)
+
+👉 Krijon një kuti ku futet lista
+
+📜 Scroll (rrëshqitje)
+scroll = tk.Scrollbar(box)
+
+👉 Krijon shiritin për të lëvizur poshtë/lart
+
+📋 Lista e numrave
+self.listbox = tk.Listbox(...)
+
+👉 Këtu shfaqen numrat dhe emrat 📞
+
+scroll.config(command=self.listbox.yview)
+
+👉 Lidh scroll me listën
+
+🔹 9. Kur ndryshon zgjedhja
+def change(self, val):
+
+👉 Kur zgjedh një kategori tjetër
+
+self.current = val
+
+👉 Ruan zgjedhjen e re
+
+self.update()
+
+👉 Rifreskon listën 🔄
+
+🔹 10. Shfaqja e numrave
+def update(self):
+
+👉 Kjo e mbush listën me të dhëna
+
+self.listbox.delete(0, tk.END)
+
+👉 Fshin të dhënat e vjetra 🧹
+
+for nr, name in data[self.current]:
+
+👉 Merr çdo numër nga kategoria e zgjedhur
+
+self.listbox.insert(tk.END, f"📞 {nr} • {name}")
+
+👉 I shton në ekran 📞
+
+🔹 11. Nisja e programit
+def run(self):
+    self.root.mainloop()
+
+👉 E mban programin hapur (që mos mbyllet)
+
+🔹 12. Startimi
+if __name__ == "__main__":
+
+👉 Kontrollon që po e hapim direkt programin
+
+App().run()
+
+👉 E nis aplikacionin 🚀
