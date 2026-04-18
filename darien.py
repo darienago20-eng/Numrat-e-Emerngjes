@@ -1,147 +1,154 @@
 import tkinter as tk
- 
+
 data = {
-    "🚨 EMERGJENCAT KOMBËTARE": [
-        ["112", "Emergjenca Unike"],
-        ["129", "Policia"],
-        ["127", "Ambulanca"],
-        ["128", "Zjarrfikësit"],
-        ["126", "Policia Rrugore"]
+    "🚨EMERGJENCAT KOMBËTARE": [
+        ("112", "Emergjenca Unike"),
+        ("129", "Policia"),
+        ("127", "Ambulanca"),
+        ("128", "Zjarrfikësit"),
+        ("126", "Policia Rrugore"),
     ],
- 
-    "⚡ SHËRBIME KOMBËTARE": [
-        ["0800 14 14", "OSHEE (Energjia Elektrike)"],
-        ["0800 44 55", "Ujësjellës"],
-        ["116", "Info / Telekom ndihmë"],
+
+    "⚡SHËRBIME KOMBËTARE": [
+        ("0800 14 14", "OSHEE"),
+        ("0800 44 55", "Ujësjellës"),
+        ("116", "Info / Telekom"),
     ],
- 
-    "🏙️ TIRANË": [
-        ["04 236 0000", "Bashkia Tiranë"],
-        ["04 237 0000", "QSUT Spitali Kryesor"]
+
+    "🏙️TIRANË": [
+        ("04 236 0000", "Bashkia"),
+        ("04 237 0000", "QSUT"),
     ],
- 
-    "🌊 DURRËS": [
-        ["052 222 222", "Bashkia Durrës"],
-        ["052 234 567", "Spitali Durrës"]
+
+    "🌊DURRËS": [
+        ("052 222 222", "Bashkia"),
+        ("052 234 567", "Spitali"),
     ],
- 
-    "❄️ SHKODËR": [
-        ["022 400 000", "Bashkia Shkodër"],
-        ["022 222 111", "Spitali Shkodër"]
+
+    "❄️SHKODËR": [
+        ("022 400 000", "Bashkia"),
+        ("022 222 111", "Spitali"),
     ],
- 
-    "🌿 ELBASAN": [
-        ["054 400 111", "Bashkia Elbasan"],
-        ["054 222 333", "Spitali Elbasan"]
+
+    "🌿ELBASAN": [
+        ("054 400 111", "Bashkia"),
+        ("054 222 333", "Spitali"),
     ],
- 
-    "🌾 FIER": [
-        ["034 500 222", "Bashkia Fier"],
-        ["034 222 444", "Spitali Fier"]
+
+    "🌾FIER": [
+        ("034 500 222", "Bashkia"),
+        ("034 222 444", "Spitali"),
     ],
- 
-    "🌊 VLORË": [
-        ["033 200 333", "Bashkia Vlorë"],
-        ["033 222 555", "Spitali Vlorë"]
+
+    "🌊VLORË": [
+        ("033 200 333", "Bashkia"),
+        ("033 222 555", "Spitali"),
     ],
- 
-    "⛰️ KORÇË": [
-        ["082 300 444", "Bashkia Korçë"],
-        ["082 222 666", "Spitali Korçë"]
+
+    "⛰️KORÇË": [
+        ("082 300 444", "Bashkia"),
+        ("082 222 666", "Spitali"),
     ],
- 
-    "🏛️ BERAT": [
-        ["032 210 555", "Bashkia Berat"],
-        ["032 222 777", "Spitali Berat"]
+
+    "🏛️BERAT": [
+        ("032 210 555", "Bashkia"),
+        ("032 222 777", "Spitali"),
     ],
- 
-    "🌄 GJIROKASTËR": [
-        ["084 220 666", "Bashkia Gjirokastër"],
-        ["084 222 888", "Spitali Gjirokastër"]
+
+    "🌄GJIROKASTËR": [
+        ("084 220 666", "Bashkia"),
+        ("084 222 888", "Spitali"),
     ],
- 
-    "🏔️ KUKËS": [
-        ["024 200 777", "Bashkia Kukës"],
-        ["024 222 999", "Spitali Kukës"]
+
+    "🏔️KUKËS": [
+        ("024 200 777", "Bashkia"),
+        ("024 222 999", "Spitali"),
     ],
- 
-    "🌳 LEZHË": [
-        ["0215 210 888", "Bashkia Lezhë"],
-        ["0215 222 111", "Spitali Lezhë"]
+
+    "🌳LEZHË": [
+        ("0215 210 888", "Bashkia"),
+        ("0215 222 111", "Spitali"),
     ],
- 
-    "⛰️ DIBËR": [
-        ["0218 220 999", "Bashkia Peshkopi"],
-        ["0218 222 222", "Spitali Peshkopi"]
-    ]
+
+    "⛰️DIBËR": [
+        ("0218 220 999", "Bashkia Peshkopi"),
+        ("0218 222 222", "Spitali Peshkopi"),
+    ],
 }
- 
- 
+
+
 class App:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("📞 Numra Shqipëria")
-        self.root.geometry("650x520")
-        self.root.configure(bg="#0f172a")  # 🔵 background modern
- 
-        self.kat = list(data.keys())[0]
- 
-        self.gui()
- 
-    def gui(self):
-        # 🔷 HEADER
-        header = tk.Label(
+        self.root.geometry("620x520")
+        self.root.configure(bg="#0f172a")
+
+        self.current = list(data.keys())[0]
+        self.build_ui()
+        self.update_list()
+
+    def build_ui(self):
+        # Header
+        tk.Label(
             self.root,
             text="📞 NUMRA EMERGJENCE - SHQIPËRI",
-            font=("Arial", 18, "bold"),
-            bg="#1e3a8a",
-            fg="white",
-            pady=10
-        )
-        header.pack(fill="x")
- 
-        # 🔀 DROPDOWN
-        self.var = tk.StringVar()
-        self.var.set(self.kat)
- 
-        menu = tk.OptionMenu(self.root, self.var, *data.keys(), command=self.change_city)
-        menu.config(bg="#38bdf8", fg="black", font=("Arial", 11, "bold"))
+            font=("Segoe UI", 18, "bold"),
+            bg="#1e293b",
+            fg="#38bdf8",
+            pady=12
+        ).pack(fill="x")
+
+        # Dropdown
+        self.var = tk.StringVar(value=self.current)
+        menu = tk.OptionMenu(self.root, self.var, *data.keys(), command=self.change)
+        menu.config(bg="#38bdf8", fg="black", font=("Segoe UI", 11, "bold"), bd=0)
         menu.pack(pady=10)
- 
-        # 📜 FRAME + SCROLLBAR
-        frame = tk.Frame(self.root, bg="#0f172a")
-        frame.pack(fill="both", expand=True, padx=15, pady=10)
- 
-        self.scroll = tk.Scrollbar(frame)
-        self.scroll.pack(side="right", fill="y")
- 
-        self.lista = tk.Listbox(
-            frame,
-            font=("Arial", 12),
-            yscrollcommand=self.scroll.set,
+
+        # Container
+        container = tk.Frame(self.root, bg="#0f172a")
+        container.pack(fill="both", expand=True, padx=15, pady=10)
+
+        # Scrollbar
+        scroll = tk.Scrollbar(container)
+        scroll.pack(side="right", fill="y")
+
+        # Listbox
+        self.listbox = tk.Listbox(
+            container,
+            font=("Segoe UI", 12),
             bg="#1e293b",
             fg="white",
             selectbackground="#38bdf8",
-            selectforeground="black"
+            selectforeground="black",
+            bd=0,
+            highlightthickness=0,
+            yscrollcommand=scroll.set
         )
-        self.lista.pack(side="left", fill="both", expand=True)
- 
-        self.scroll.config(command=self.lista.yview)
- 
-        self.shfaq()
- 
-    def change_city(self, value):
-        self.kat = value
-        self.shfaq()
- 
-    def shfaq(self):
-        self.lista.delete(0, tk.END)
- 
-        for nr, emri in data[self.kat]:
-            self.lista.insert(tk.END, f"📞 {nr} - {emri}")
- 
+        self.listbox.pack(fill="both", expand=True)
+        scroll.config(command=self.listbox.yview)
+
+        # Footer
+        tk.Label(
+            self.root,
+            text="Made by Darien💙",
+            bg="#0f172a",
+            fg="#64748b",
+            font=("Segoe UI", 9)
+        ).pack(pady=5)
+
+    def change(self, value):
+        self.current = value
+        self.update_list()
+
+    def update_list(self):
+        self.listbox.delete(0, tk.END)
+        for nr, name in data[self.current]:
+            self.listbox.insert(tk.END, f"📞 {nr}  •  {name}")
+
     def run(self):
         self.root.mainloop()
- 
- 
-App().run()
+
+
+if __name__ == "__main__":
+    App().run()
